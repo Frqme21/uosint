@@ -1,0 +1,56 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "ultimate-osint"
+version = "0.1.0"
+description = "Ultimate OSINT suite: DarkCurl + Maigret + Sherlock + WhatsMyName + Holehe + Socialscan + breach intel, cross-referenced and verified"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = []
+classifiers = [
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+
+dependencies = [
+    "httpx[http2]>=0.27,<0.29",
+    "colorama>=0.4,<1",
+    "dnspython>=2.4",
+    "maigret>=0.6.3",
+    "darkcurl",
+    "holehe>=1.61",
+    "socialscan>=2.0.1",
+    "aiohttp>=3.9",
+]
+
+keywords = [
+    "osint", "username-osint", "email-osint", "recon",
+    "threat-intelligence", "cybersecurity", "cli-tool",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-cov"]
+
+[project.scripts]
+ultimate-osint = "ultimate_osint.__main__:run"
+uosint = "ultimate_osint.__main__:run"
+
+[tool.flit.module]
+name = "ultimate_osint"
+
+[tool.flit.sdist]
+exclude = [
+    "tests/",
+    ".git",
+    ".gitignore",
+    "**/__pycache__/**",
+    "*.pyc",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+testpaths = ["tests"]
